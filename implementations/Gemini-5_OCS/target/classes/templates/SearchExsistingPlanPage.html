@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exsisting Plan Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"></script>
+    <script src="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css"></script>
+<style>
+nav {
+            font-weight: bold;
+        }
+    
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding-right: 5%;
+            padding-top: 1%;
+            padding-bottom: 2%;
+            overflow: hidden;
+            background-color: #046EE6;
+        }
+          
+        li {
+            float: right;
+            font-size: 18px;
+        }
+          
+        li a {
+            display: block;
+            padding: 10px 30px;
+            color: rgb(255, 255, 255);
+            display: inline-block;
+            padding-right:30px;
+            transition: .2s;
+            font-weight:bold;
+            border-radius: 30px;
+        }
+        /* Change the link color on hover */
+        li a:hover {
+            text-decoration: none;
+            color: #ae8bff;
+            cursor: pointer;
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+        div.container{
+            width: 1800px;
+            height: 800px;
+            left: initial;
+            top: initial;
+            font-weight: 500;
+            transform: translate(0%, 3%);
+        }
+        h1 {
+            font-size: 40px;
+           font-weight: 800;
+            right: 60%;
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+         h3 {
+        font-size: 18px;
+        color: white;
+        font-weight: 600;
+        }
+        .form-control{
+            
+            border-radius: 10px;
+            border: 1px solid rgb(88, 88, 88);
+        }
+
+        .danger {
+            border-color: #e4e4e4;
+            background-color: #e4e4e4;
+            color: rgb(104, 104, 104);
+        }
+
+        .danger:hover {
+            border-color: #b60c00;
+            background-color: #b60c00;
+            color: white;
+        }
+        .space {
+            position: fixed;
+            height: 110%;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+* {
+  box-sizing: border-box;
+}
+
+    table {
+        border-collapse: collapse;
+        border-radius: 1em;
+        overflow: hidden;
+        background-color: rgb(255, 255, 255);
+    }
+    
+    #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
+    #myTable th{
+            text-align: center; /* Left-align text */
+            padding: 12px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+    #myTable td {       
+            text-align: center; /* Left-align text */
+            padding: 12px; /* Add padding */
+            font-size: 13px;
+        }
+
+    #myTable tr {
+        border-bottom: 1px solid rgb(207, 207, 207);
+    }
+
+    #myTable tr.header{ 
+        background-color: #eeca00;
+        color: rgb(0, 0, 0);
+        }
+        tr:hover {
+            /* Add a grey background color to the table header and on hover */
+            background-color: #e7e7e7;
+        }
+
+</style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <h3 th:text="${username} + ' is logged in as ' + ${role}"></h3>
+                <form th:action="@{/custom_logout}" method="post">
+                    <input type="submit" value="Logout" class="btn btn-danger" />
+                </form>
+            </li>
+            <li><a>|</a></li>
+            <li><a th:href="@{/create}">Create Science Plan</a></li>
+        </ul>
+    </nav>
+    <img class = "space" src="img/search_bg-06.png" width="300" height="219" align ="left">
+    <div class="container">
+    <h1>EXISTING PLAN</h1><br>
+        <input type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Search for exsisting plan...." title="Type in a name"><br><br>
+    <table id="myTable">
+        <tr class="header">
+            <th style="width:7%;">Plan ID</th>
+            <th style="width:7%;">Creator Name</th>
+            <th style="width:10%;">Submitter Name</th>
+            <th style="width:8%;">Funding(USD)</th>
+            <th style="width:8%;">Star System</th>
+            <th style="width:10%;">Telescope Location</th>
+            <th style="width:10%;">Status</th>
+            <th style="width:10%;">Action</th>
+        </tr>
+
+        <tr th:each="plan: ${plans}" th:if="${plans != null}">
+            <td th:text="${plan.planNo}" />
+            <td th:text="${plan.creator}" />
+            <td th:text="${plan.submitter}" />
+            <td th:text="${plan.fundingInUSD}" />
+            <td th:text="${plan.starSystem}" />
+            <td th:text="${plan.telescopeLocation}" />
+            <td th:text="${plan.status}" />
+            <td>
+                <a th:if="${plan.status == 'CREATED'}" th:href="@{/Edit/{planNo}(planNo=${plan.planNo})}">Edit</a>&nbsp;
+                <a th:if="${plan.status == 'CREATED' and plan.checkNull == false}" th:href="@{/Submit/{planNo}(planNo=${plan.planNo})}">Submit</a>
+        </tr>
+        <tr th:each="plan: ${plansOCS}">
+            <td th:text="${plan.planNo}" />
+            <td th:text="${plan.creator}" />
+            <td th:text="${plan.submitter}" />
+            <td th:text="${plan.fundingInUSD}" />
+            <td th:text="${plan.starSystem}" />
+            <td th:text="${plan.telescopeLocation}" />
+            <td th:text="${plan.status}" />
+            <td>
+                <a th:if="${plan.status.name() != 'TESTED'}" th:href="@{/test/{planNo}(planNo=${plan.planNo})}" >Test</a></td>
+        </tr>
+    </table><br><br><br><br><br>
+    </div>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[5];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+</body>
+</html>

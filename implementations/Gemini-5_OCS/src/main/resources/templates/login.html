@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <title>Login Page</title>
+    <meta charset="utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+<style>
+    h4 {
+        font-size: 30px;
+        right: 60%;
+        color: black;
+        font-weight: 800;
+    }
+    .title {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+    .button-login{
+        
+        padding: 6px 70px;
+    }
+    .button-loginn{
+        
+        padding: 6px 45px;
+    }
+    div.container{
+        width: 500px;
+        height: 500px;
+        transform: translate(100%, 35%);
+        right: 60%;
+        bottom: 68%;
+        left: initial;
+        top: initial;
+        transition: 2s ease-in-out;
+        text-align: center;
+    }
+    .input-field {
+        max-width: 400px;
+        margin: 15px 0;
+        width: 80%;
+        height: 40px;
+        border-radius: 30px;
+        border: 1px solid rgb(114, 114, 114);
+        display: grid;
+        grid-template-columns: 15% 85%;
+        padding: 0 0.4rem;
+        position: relative;
+    }
+    .input-field i {
+        text-align: center;
+        line-height: 38px;
+        color: #b6b6b6;
+        transition: 0.5s;
+        font-size: 1rem;
+    }
+  .input-field input {
+        background: none;
+        outline: none;
+        border: none;
+        line-height: 31px;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #333;
+    }
+  .input-field input::placeholder {
+        color: #aaa;
+        font-weight: 500;
+    }
+
+
+  .btn {
+        background-color: #9b7ae9;
+        border: none;
+        outline: none;
+        width: 120px;
+        height: 35px;
+        border-radius: 50px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 15px 0;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    
+    .btn:hover {
+        background-color: #4e0688;
+        color: #fff;
+    }
+    .space {
+        position: fixed;
+        height: 100%;
+        width: 90%;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+    .w3-bar{
+        margin: 0;
+        position: absolute;
+        left: 1%;
+    }
+    hr{
+        margin-top: 20px;
+        color: #aaa;
+    }
+</style>
+</head>
+<body>
+<img class = "space"
+     width="300" height="219" align ="left" th:src="@{/img/undraw_Outer_space_drqu-01.png}">
+<div class="container">
+    <form name="f" th:action="@{/login}" method="post">
+        <fieldset>
+            <h4 class="title">LOG IN</h4>
+            <div class="input-field" style="margin-left:10%; margin-right:10%">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" name="username" placeholder="Username" />
+            </div>
+            <div class="input-field" style="margin-left:10%; margin-right:10%">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" name="password" placeholder="Password" />
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Log in</button>
+            </div>
+
+            <div th:if="${param.error}" class="alert alert-danger">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                You have been logged out.
+            </div>
+        </fieldset>
+    </form>
+    <hr size="20" color="grey"> 
+    <!------------------------------------------------------Register button------------------------------------------->
+        <div class="w3-container w3-left">
+            <div class="w3-bar">
+                <br><button onclick="document.location='register'" class="w3-button w3-black w3-border w3-hover-white w3-round-xxlarge button-loginn" ><b>Registration</b></button>
+            </div>
+        </div>
+</div>
+</body>
+</html>
+
+  

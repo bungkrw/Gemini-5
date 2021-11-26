@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <title>Test Science Plan Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        nav {
+            font-weight: bold;
+        }
+    
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding-right: 5%;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            overflow: hidden;
+            background-color: #3F3D56;
+        }
+          
+        li {
+            float: right;
+            font-size: 18px;
+        }
+          
+        li a {
+            display: block;
+            padding: 10px 30px;
+            color: rgb(255, 255, 255);
+            display: inline-block;
+            padding-right:30px;
+            transition: .2s;
+            font-weight:bold;
+            border-radius: 30px;
+        }
+        /* Change the link color on hover */
+        li a:hover {
+            text-decoration: none;
+            color: #9b7ae9;
+            cursor: pointer;
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+        div.container{
+            width: 700px;
+            height: 150px;
+            left: initial;
+            top: initial;
+            font-weight: 350;
+            transform: translate(53%, 58%);
+        }
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            right: 60%;
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+        h3 {
+            font-size: 18px;
+            color: white;
+            font-weight: 600;
+        }
+        .form-control{
+            border-radius: 10px;
+            border: 1px solid rgb(187, 187, 187);
+        }
+
+        
+        .bttn {
+            background-color: rgb(63, 123, 235);
+            border: none;
+            outline: none;
+            width: 120px;
+            height: 35px;
+            border-radius: 50px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+    
+        .bttn:hover {
+            background-color: rgb(49, 23, 143);
+            color: #fff;
+        }
+
+        .twobutton{
+            text-align: center;
+            padding-bottom: 2%;
+        }
+        .danger {
+            border-color: #e4e4e4;
+            background-color: #e4e4e4;
+            color: rgb(104, 104, 104);
+        }
+
+        .danger:hover {
+            border-color: #b60c00;
+            background-color: #b60c00;
+            color: white;
+        }
+        .space {
+            position: fixed;
+            height: 110%;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        p{
+            font-size: 18px;
+            color: white;
+            font-weight: 600;
+        }
+      
+        label {
+            color: white;
+        }
+
+    </style>
+</head>
+<script>
+    function testing(){
+    alert("The plan is testing please wait...");
+    }
+</script>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <h3 th:text="${username} + ' is logged in as ' + ${role}"></h3>
+                <form th:action="@{/custom_logout}" method="post">
+                    <input type="submit" value="Logout" class="btn btn-danger" />
+                </form>
+            </li>
+            <li><a style="color:white">|</a></li>
+            <li><a th:href="@{/create}">Create Science Plan</a></li>
+            <li><a th:href="@{/}">Existing Plan</a></li>
+        </ul>
+    </nav>
+    <img class = "space" src="/img/test_plan-05.png"
+         width="300" height="219" align ="left" th:src="@{/img/test_plan-05.png}">
+    <div class="container">
+    <h1>TEST SCIENCE PLAN</h1>
+    <form th:action="@{/test/{planNo}(planNo=${plan.planNo})}" method="post">
+    
+        <label ><b>Plan No. &nbsp;</b></label>
+        <input name="planNo" class="form-control" id="PlanNo" disabled th:value=${plan.planNo}><br>
+        <label ><b>Creator. &nbsp;</b></label>
+        <input name="creator" class="form-control" id="creator" disabled  th:value=${plan.creator}><br>
+        <label ><b>Telescope Location. &nbsp;</b></label>
+        <input name="telescopeLocation" class="form-control" id="telescopeLocation" disabled th:value=${plan.telescopeLocation}><br>
+        <label ><b>Star System &nbsp;</b></label>
+        <input name="starSystem" class="form-control"  id="starSystem" disabled th:value=${plan.starSystem}><br>
+
+        <!--<label for="telescopemode"><b>Telescope Mode &nbsp;</b></label>
+        <select name="telescopemode" class="form-control" id="telescopemode">
+            <option value="Hawai">โหมดกลางคืน อย่าลืมเปลี่ยน value</option>
+            <option value="Chile">โหมดกลางวัน อย่าลืมเปลี่ยน value</option>
+        </select><br>-->
+        
+        <div class="twobutton">
+            <button type="submit" class="bttn btn-primary" id="Test" onclick="testing()">Test</button>
+        </div>
+
+        <div class= "result" th:each="result: ${resultTest}" th:if="${resultTest.length > 0}">
+            <p th:text="${result}"></p>
+        </div><br>
+    </form>
+    </div>
+    
+</body>
+</html>

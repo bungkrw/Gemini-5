@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <title>Registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style>
+    nav {
+        
+        font-weight: bold;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding-right: 5%;
+        padding-top: 1%;
+        padding-bottom: 2%;
+        overflow: hidden;
+        background-color: rgb(255, 255, 255);
+    }
+      
+    li {
+        float: right;
+        font-size: 18px;
+    }
+      
+    li a {
+        display: block;
+        padding: 1px 30px;
+        color: rgb(0, 0, 0);
+        display: inline-block;
+        padding-right:30px;
+        transition: .2s;
+        font-weight:bold;
+        border-radius: 30px;
+    }
+    /* Change the link color on hover */
+    li a:hover {
+        text-decoration: none;
+        color: #9b7ae9;
+        cursor: pointer;
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    h2 {
+        font-size: 30px;
+        font-weight: 800;
+        text-align: center;
+        color: black;
+    }
+    hr{
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+
+    .title {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+
+    div.container{
+        width: 500px;
+        height: 500px;
+        left: initial;
+        top: initial;
+        transform: translate(10%, 0%);
+        font-weight: 600;
+    }
+    
+    .btn {
+        background-color: #9b7ae9;
+        border: none;
+        outline: none;
+        width: 120px;
+        height: 35px;
+        border-radius: 50px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 15px 0;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .btn:hover {
+        background-color: #4e0688;
+        color: #fff;
+    }
+
+    .danger {
+        border-color: #e4e4e4;
+        background-color: #e4e4e4;
+        color: rgb(104, 104, 104);
+    }
+
+    .danger:hover {
+        border-color: #b60c00;
+        background-color: #b60c00;
+        color: white;
+    }
+    .twobutton{
+        text-align: center;
+    }
+    .space {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    .form-control{
+        margin: 15px 0;
+        border-radius: 10px;
+        border: 1px solid rgb(187, 187, 187);
+    }
+</style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="login">Log in</a></li>
+            <li>|</li>
+        </ul>
+    </nav>
+    <img class = "space" src="../static/img/regis_bg-02.png"
+         width="300" height="219" align ="left" th:src="@{img/regis_bg-02.png}">
+    <div class="container py-2">
+        <h2>REGISTERATION</h2>
+        <form th:action="@{/register}" th:object="${user}" method="POST">
+            <div class="mb-3">
+                <input type="text" th:field="*{nameOfUser}" required class="form-control" placeholder="FullName"/>
+            </div>
+            <div class="mb-3">
+                <input type="text" th:field="*{address}" required class="form-control" placeholder="Address"/>
+            </div>
+            <div class="mb-3">
+                <input type="text" th:field="*{gender}" required class="form-control" placeholder="Gender"/>
+            </div>
+            <div class="mb-3">
+                <input type="text" th:field="*{dob}" required class="form-control" placeholder="Date of Birth (yyyy-mm-dd)">
+            </div>
+            <div class="mb-3">
+                <select th:field="*{role}" class="form-control">
+                    <option value="Astronomer" selected>Astronomer</option>
+                    <!--<option value="Science Observer">Science Observer</option>-->
+                </select>
+            </div>
+            <hr size="20" color="grey">       
+<!------------------Username/Password----------------->
+            <div th:if="${error != null}" th:text="${error}" class="alert alert-danger">
+            </div>
+            <div class="mb-3">
+                <input type="text" th:field="*{username}" placeholder="Username" class="form-control" required/>
+            </div>
+            <div class="mb-3">
+                <input type="password" th:field="*{password}" placeholder="Password" class="form-control" required/>
+            </div>
+            <div class="twobutton">
+                <button type="submit" class="btn btn-primary">Sign up</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="reset" value="reset" class=" btn danger">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

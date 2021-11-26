@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <title>Edit Science Plan Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        nav {
+            font-weight: bold;
+        }
+    
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding-right: 5%;
+            padding-top: 1%;
+            padding-bottom: 2%;
+            overflow: hidden;
+            background-color: rgb(255, 255, 255);
+        }
+          
+        li {
+            float: right;
+            font-size: 18px;
+        }
+          
+        li a {
+            display: block;
+            padding: 10px 30px;
+            color: rgb(0, 0, 0);
+            display: inline-block;
+            padding-right:30px;
+            transition: .2s;
+            font-weight:bold;
+            border-radius: 30px;
+        }
+        /* Change the link color on hover */
+        li a:hover {
+            text-decoration: none;
+            color: #9b7ae9;
+            cursor: pointer;
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+        div.container{
+            width: 620px;
+            height: 500px;
+            left: initial;
+            top: initial;
+            font-weight: 500;
+            transform: translate(45%, 5%);
+        }
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            right: 60%;
+            color: black;
+            text-align: center;
+        }
+         h3 {
+        font-size: 18px;
+        color: black;
+        font-weight: 680;
+    }
+        .form-control{
+            
+            border-radius: 10px;
+            border: 1px solid rgb(187, 187, 187);
+        }
+
+        .btttn{
+            border-radius: 50px;
+            border: 1px black;
+        }
+        .btttn {
+            background-color: #585858;
+            border: none;
+            outline: none;
+            width: 90px;
+            height: 35px;
+            border-radius: 50px;
+            color: rgb(255, 255, 255);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+    
+        .btttn:hover {
+            background-color: #9b7ae9;
+            color: #fff;
+        }
+
+        .bttn{
+            border-radius: 50px;
+        }
+        .bttn {
+            background-color: #9b7ae9;
+            border: none;
+            outline: none;
+            width: 120px;
+            height: 35px;
+            border-radius: 50px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+    
+        .bttn:hover {
+            background-color: #4e0688;
+            color: #fff;
+        }
+        
+
+        .twobutton{
+            text-align: center;
+            padding-bottom: 5%;
+        }
+        .danger {
+            border-color: #e4e4e4;
+            background-color: #e4e4e4;
+            color: rgb(104, 104, 104);
+        }
+
+        .danger:hover {
+            border-color: #b60c00;
+            background-color: #b60c00;
+            color: white;
+        }
+        .space {
+            position: fixed;
+            height: 110%;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        p{
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <h3 th:text="${username} + ' is logged in as ' + ${role}"></h3>
+                <form th:action="@{/custom_logout}" method="post">
+                    <input type="submit" value="Logout" class="btn btn-danger" />
+                </form>
+            </li>
+            <li><a>|</a></li>
+            <li><a th:href="@{/}">Existing Plan</a></li>
+        </ul>
+    </nav>
+    <img class = "space" src="/img/create_plan-04.png"
+         width="300" height="219" align ="left" th:src="@{/img/create_plan-04.png}">
+    <div class="container">
+    <h1>Edit Science Plan</h1>
+        <form name="f" th:action="@{/Edit/{planNo}(planNo=${editPlan.planNo})}" method="post" th:object="${editPlan}">
+
+            <label for="CreatorName"><b>Creator Name &nbsp;</b></label>
+            <input type="text" class="form-control" placeholder="Enter Creator Name" name="creatorname" th:value="${editPlan.creator !=null}? ${editPlan.creator} : ''" id="CreatorName" th:field="*{creator}"><br>
+
+            <label for="SubmitterName"><b>Submitter Name &nbsp;</b></label>
+            <input type="text" class="form-control" placeholder="Enter Submitter Name" name="submittername" th:value="${editPlan.submitter !=null}? ${editPlan.submitter} : ''"  id="SubmitterName" th:field="*{submitter}"><br>
+
+            <label for="fundingInUSD"><b>Funding(USD) &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Funding Amount" name="fundingInUSD" th:value="${editPlan.fundingInUSD !=null}? ${editPlan.fundingInUSD} : ''" id="fundingInUSD" th:field="*{fundingInUSD}"><br>
+
+            <label for="obj"><b>Objective</b></label>
+            <textarea id="obj" class="form-control" name="obj" rows="3" cols="20" placeholder="Objective of Science editPlan....." th:value="${editPlan.objectives !=null}? ${editPlan.objectives} : ''" th:field="*{objectives}"></textarea><br>
+
+            <label for="StarSystem"><b>Star System &nbsp;</b></label>
+            <input type="text" class="form-control" placeholder="Enter Star System" name="star" th:value="${editPlan.starSystem !=null}? ${editPlan.starSystem} : ''" id="StarSystem" th:field="*{starSystem}"><br>
+
+            <label for="StartDate"><b>Start Date &nbsp;</b></label>
+            <input type="text" class="form-control" placeholder="Enter Start Date (yyyy/mm/dd HH:MM:SS)" name="star" th:value="${editPlan.startDate !=null}? ${editPlan.startDate} : ''" id="StartDate" th:field="*{startDate}"  pattern="^\d{4}([/])\d{2}\1\d{2} \d{2}:\d{2}:\d{2}"><br>
+
+            <label for="EndDate"><b>End Date &nbsp;</b></label>
+            <input type="text" class="form-control" placeholder="Enter End Date (yyyy/mm/dd HH:MM:SS)" name="star" th:value="${editPlan.endDate !=null}? ${editPlan.endDate} : ''" id="EndDate" th:field="*{endDate}"  pattern="^\d{4}([/])\d{2}\1\d{2} \d{2}:\d{2}:\d{2}"><br>
+
+            <label for="telelo"><b>Telescope Location &nbsp;</b></label>
+            <select name="telelo" id="telelo" class="form-control" th:field="*{telescopeLocation}" >
+                <option value="Hawaii" th:selected="${editPlan.telescopeLocation=='HAWAII'}">Hawaii</option>
+                <option value="Chile" th:selected="${editPlan.telescopeLocation=='CHILE'}">Chile</option>
+            </select><br>
+
+            <label><b>Data Project Requirement<br></b></label>
+            <label for="fileType"><b>File Type &nbsp;</b></label>
+            <select type="text" class="form-control" placeholder="Enter File Type" name="fileType"  id="fileType" th:field="*{fileType}">
+                <option value="" selected disabled hidden>Choose here</option>
+                <option th:value="RAW" th:selected="${editPlan.fileType =='RAW'}">RAW</option><!--th:selected="${editPlan.fileType =='RAW'"-->
+                <option th:value="PNG" th:selected="${editPlan.fileType =='PNG'}">PNG</option>
+                <option th:value="JPEG" th:selected="${editPlan.fileType =='JPEG'}">JPEG</option>
+            </select><br>
+
+            <label for="fileQuality"><b>File Quality &nbsp;</b></label>
+            <select type="text" class="form-control" placeholder="Enter File Quality" name="fileQuality"  id="fileQuality" th:field="*{fileQuality}">
+                <option value="Fine" th:selected="${editPlan.fileQuality =='Fine'}">Fine</option>
+                <option value="Low" th:selected="${editPlan.fileQuality =='Low'}">Low</option>
+            </select><br>
+
+            <label for="colorType"><b>Color Type &nbsp;</b></label>
+            <select type="text" class="form-control" placeholder="Enter Color Type" name="fileQuality"  id="colorType"th:field="*{colorType}">
+                <option value="Color mode" th:selected="${editPlan.colorType =='Color mode'}">Color Mode</option>
+                <option value="B&W mode" th:selected="${editPlan.colorType =='B&W mode'}">B&W Mode</option>
+            </select><br>
+
+            <label for="contrast"><b>Contrast &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter Contrast" name="contrast" th:value="${editPlan.contrast !=null}? ${editPlan.contrast} : ''" id="contrast" th:field="*{contrast}"><br>
+
+            <label for="brightness"><b>Brightness &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter brightness" name="brightness" th:value="${editPlan.brightness !=null}? ${editPlan.brightness} : ''" id="brightness" th:field="*{brightness}"><br>
+
+            <label for="saturation"><b>Saturation &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter saturation" name="saturation" th:value="${editPlan.saturation !=null}? ${editPlan.saturation} : ''" id="saturation" th:field="*{saturation}"><br>
+
+            <label for="highlights"><b>Highlights &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter highlights" name="highlights" th:value="${editPlan.highlights !=null}? ${editPlan.highlights} : ''" id="highlights" th:field="*{highlights}"><br>
+
+            <label for="exposure"><b>Exposure &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter exposure" name="exposure" th:value="${editPlan.exposure !=null}? ${editPlan.exposure} : ''" id="exposure" th:field="*{exposure}"><br>
+
+            <label for="shadow"><b>Shadow &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter shadow" name="shadow" th:value="${editPlan.shadows !=null}? ${editPlan.shadows} : ''" id="shadow" th:field="*{shadows}"><br>
+
+            <label for="whites"><b>Whites &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter whites" name="whites" th:value="${editPlan.whites !=null}? ${editPlan.whites} : ''" id="whites" th:field="*{whites}"><br>
+
+            <label for="blacks"><b>Blacks &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter blacks" name="blacks" th:value="${editPlan.blacks !=null}? ${editPlan.blacks} : ''" id="blacks" th:field="*{blacks}"><br>
+
+            <label for="luminance"><b>Luminance &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter luminance" name="luminance" th:value="${editPlan.luminance !=null}? ${editPlan.luminance} : ''" id="luminance" th:field="*{luminance}"><br>
+
+            <label for="hue"><b>Hue &nbsp;</b></label>
+            <input type="number" class="form-control" placeholder="Enter hue" name="hue" th:value="${editPlan.hue !=null}? ${editPlan.hue} : ''" id="hue" th:field="*{hue}"><br>
+
+            <div class="twobutton">
+                <button type="submit" class="bttn" >Save</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="reset" value="reset" class=" bttn danger">
+            </div>
+
+        </form>
+        </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+        <footer class="bg-light text-center text-lg-start" style="position: fixed;">
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgb(47, 0, 156);">
+              <p>© 2021 Copyright:Geminisystem.com</p>
+            </div>
+            <!-- Copyright -->
+          </footer>
+    
+</body>
+</html>
