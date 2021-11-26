@@ -1,5 +1,12 @@
+# ITCS431 Software Design and Development
+This project is part of the Software Design and Development course
+## Team Members
+*   Ekaphat Seamthong 6188039
+*   Alisa Uthikamporn 6188025
+*   Jirachaya Wongsuppakarn 6188046
+*   Kanrawee Chiamsakul 6188049
+*   Warat Phat-in 6188035
 # Instructions
-
 ## Steps to run the system
 1. Change PATH variable in application.properties to the path of /Gemini-5_OCS/ocs.mv.db on your machine.<br>
 2. Change Java SDK to version 16. <br> &emsp; 
